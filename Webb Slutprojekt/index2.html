@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="code" href="script.js">
+    <style>
+        body {text-align: center;}
+        #enterDetails {float: left; width: 50%;  background-color: darkslategray; color: floralwhite;}
+        #findDetails {float: left; width: 50%; background-color: floralwhite; color: darkslategray;}
+        input {width: 120px;}
+    </style>
+</head>
+<body>
+    <div id="enterDetails">
+        <h1>Enter details</h1>
+
+        <h4>Username</h4> 
+        <input id="enterUsername" type="text"> 
+
+        <h4>Password</h4> 
+        <input id="createPassword" type="text"> <br><br>
+
+        <!-- <h4>Age</h4> 
+        <input id="enterAge" type="number"> <br><br> -->
+
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button> <br><br>
+    </div>
+
+    <div id="findDetails">
+        <h1>Enter username</h1>
+        <h4>Username</h4>
+        <input id="findUsername" type="text"> <br><br>
+
+        <h1>Enter password</h1>
+        <h4>Password</h4>
+        <input id="enterPassword" type="text"> <br><br>
+        <button id="find">FIND</button>
+        <h3 id="findPassword" type="text"></h3> <br><br>
+        <!-- <h3 id="findAge" type="number"></h3> <br><br> -->
+    </div>
+    
+
+    <script type="module">
+
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0PeueRki6uB7SQc6BM3vPZK07T4kyrBg",
+            authDomain: "listwebstorage.firebaseapp.com",
+            databaseURL: "https://listwebstorage-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "listwebstorage",
+            storageBucket: "listwebstorage.appspot.com",
+            messagingSenderId: "285250545705",
+            appId: "1:285250545705:web:5a0a05efeb875796c59438"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+   
+
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"//Copy and Paste the URL from near the top of the CDN you pasted in from firebase
+        // (the one where you imported "initializeApp" from),
+        //but change "firebase-app" to "firebase-database"
+        
+
+        const db = getDatabase();
+
+        var enterUsername = document.querySelector("#enterUsername");
+        var createPassword = document.querySelector("#createPassword");
+        //var enterAge = document.querySelector("#enterAge");
+        var findUsername = document.querySelector("#findUsername");
+        var findPassword = document.querySelector("#findPassword");
+        var enterPassword = document.querySelector("#enterPassword");
+        //var findAge = document.querySelector("#findAge");
+      
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData() {
+            set(ref(db, "Accounts/"+ enterUsername.value),{
+                Password: createPassword.value,
+                Username: enterUsername.value,
+                //Age: enterAge.value
+            })
+            .then(()=>{
+                alert("Account added successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function FindData() {
+            const dbref = ref(db);
+
+            if (get(child(dbref, "Accounts/" + findPassword.value)) == enterPassword.value){
+                alert("Password is correct");
+            } else {
+                alert("Password is incorrect");
+            }
+
+            get(child(dbref, "Accounts/" + findUsername.value))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findPassword.innerHTML = "Password: " + snapshot.val().Password;
+                    //findAge.innerHTML = "Age: " + snapshot.val().Age;
+                } else {
+                    alert("No account found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+        }
+
+        function UpdateData(){
+            update(ref(db, "Accounts/"+ enterUsername.value),{
+                Password: createPassword.value,
+                //Age: enterAge.value
+            })
+            .then(()=>{
+                alert("Account updated successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function RemoveData(){
+            remove(ref(db, "Accounts/"+ enterUsername.value))
+            .then(()=>{
+                alert("Account deleted successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        insertBtn.addEventListener('click', InsertData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+        findBtn.addEventListener('click', FindData);
+      </script>
+</body>
+</html>
