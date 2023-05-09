@@ -1,8 +1,5 @@
-let links = document.querySelectorAll('.links a');
-let bodyId = document.querySelector('body').id;
-
-for(let link of links){
-    if(link.dataset.active == bodyId){
-        link.classList.add('active');
-    }
-}
+const activePage = window.location.pathname;
+const navLinks = document.querySelectorAll('.nav a');
+forEach(link => {
+    console.log(link.href);
+})

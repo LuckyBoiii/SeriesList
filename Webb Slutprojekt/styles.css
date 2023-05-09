@@ -142,7 +142,7 @@ h4{
 }
 
 .header_button:hover,
-.header_button:active{
+.active{
     color: rgb(43, 177, 170);
     cursor: pointer;
 }
