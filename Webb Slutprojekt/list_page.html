@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SeriesList</title>
+    <link rel="stylesheet" href="list_page_styles.css">
+    <link rel="stylesheet" href="header_styles.css">
     
 </head>
 <body>
-
-    
-    
     <nav>
         <div class="header">
             <div class="header_positions">
@@ -21,9 +19,9 @@
                 <div class="header_positions_2">
                     <a class="header_button" href="home_page.html" style="text-decoration: none;">Home</a>
                     <a class="header_button active" href="list_page.html" style="text-decoration: none;">List</a>
-                    <a class="header_button" href="home_page.html" style="text-decoration: none;">Help</a>
-                    <a class="header_button" href="home_page.html" style="text-decoration: none;">About</a>
-                    <a class="header_button" href="home_page.html" style="text-decoration: none;">Contact</a>
+                    <a class="header_button" href="help_page.html" style="text-decoration: none;">Help</a>
+                    <a class="header_button" href="about_page.html" style="text-decoration: none;">About</a>
+                    <a class="header_button" href="contact_page.html" style="text-decoration: none;">Contact</a>
                 </div>
                 <div class="header_positions_3">
                     <a class="header_button" href="home_page.html" style="text-decoration: none;">Dark mode</a>
@@ -32,45 +30,55 @@
         </div>
     </nav>
 
-    <div class="home_page">
-        <div class="home_page_background"></div>
-        <div class="home_page_1">
-            <div class="home_page_text">
-                <div class="home_page_titel">
-                    <h1 style="color: white;">Fuck</h1>
-                </div>
-                <h4>Make lists better, faster and more flexible while also keeping the style</h4>
-            </div>
-        </div>
-        <div class="">
-
-        </div>
-        <div class="home_page_info">
-            <div class="home_page_examples">
-                <div class="home_page_example_item">
-                    <img class="example" src="images/Example_1.jpg" alt="list picture">
-                    <div class="home_page_example_text">
-                        <h2 style="color: white;">Titles</h2> <br> <br>
-                        <p style="color: rgb(184, 184, 184);">Add titles to your list items! The title can be whatever you choose, it's all up to you! <br> <br> Of course you can change the title whenever you wish. </p>
+    <div class="page">
+        <main class="app">
+            <!-- Greeting -->
+            <section class="greeting">
+                <h2 class="title">
+                    <input type="text" id="name" placeholder="Place your list name here!" />
+                </h2>
+            </section>
+            <!-- End of Greeting -->
+            
+            <!-- New Todo -->
+            <section class="create-todo">
+                <form id="new-todo-form">
+                    <h4>What's your title?</h4>
+                    <input 
+                        type="text" 
+                        placeholder="Write your title here!"
+                        name="content"
+                        id="content" />
+                    
+                    <h4>Pick a category</h4>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="category" id="category1" value="business" /> 
+                            <span class="bubble business"></span>
+                            <div>Series</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="category" id="category2" value="personal" />
+                            <span class="bubble personal"></span>
+                            <div>Other</div>
+                        </label>
                     </div>
-                </div>
-                <div class="home_page_example_item">
-                    <img class="example" src="images/Example_2.jpg" alt="list picture">
-                    <div class="home_page_example_text">
-                        <h2 style="color: white;">Rate your items</h2> <br> <br>
-                        <p style="color: rgb(184, 184, 184);">Put your own rating on your items. Simply click the stars to change your score. <br><br> This is especially usefulll for lists of series, movies, foods and resturants!</p>
-                    </div>
-                </div>
-                <div class="home_page_example_item">
-                    <img class="example" src="images/Example_3.jpg" alt="list picture" style="padding-bottom: 20px;">
-                    <div class="home_page_example_text">
-                        <h2 style="color: white;">Add comments to yor items</h2> <br> <br>
-                        <p style="color: rgb(184, 184, 184);">Comment your items for a longer description of them! <br><br> You can even use this to store recepies. You can change the added comment at any time.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+                    <input type="submit" value="Add todo" />
+                </form>
+            </section>
+            <!-- End of New Todo -->
+    
+            <!-- Todo List -->
+            <section class="todo-list">
+                <h3>List items</h3>
+                <div class="list" id="todo-list"></div>
+            </section>
+            <!-- End of Todo List -->
+    
+        </main>
     </div>
-    <script type="text/javascript" src="header_highlight.js"></script>
+	<!-- End of App Wrapper -->
+    <script  src="list_script.js"></script>
 </body>
 </html>
