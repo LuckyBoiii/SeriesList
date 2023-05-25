@@ -14,7 +14,7 @@
 
 .help_page{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--colour_2);
     display: flex;
     justify-content: end;
@@ -32,7 +32,7 @@
 .help_page_container_title{
     color: var(--colour_4);
 
-    font-size: 20px;
+    font-size: 1.5rem;
     padding-top: 5%;
     padding-bottom: 5%;
 }
@@ -58,7 +58,21 @@
     width: 90%;
     color: var(--colour_4);
 
-    font-size: 15px;
+    font-size: 1rem;
+    line-height: 2rem;
     padding-top: 5%;
     padding-bottom: 5%;
+    
+}
+
+.help_page_item_examples{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+    .help_page_container{
+        width: 100%;
+    }
+    
 }
